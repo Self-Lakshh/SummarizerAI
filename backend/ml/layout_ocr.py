@@ -440,3 +440,5 @@ def process_document(file_path: Union[str, Path], document_id: Optional[str] = N
     """
     processor = DocumentProcessor()
     return processor.process_document(file_path, document_id)
+
+# TODO: add multi-column layout detection
