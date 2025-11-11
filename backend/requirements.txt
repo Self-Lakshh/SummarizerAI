@@ -104,3 +104,8 @@ jupyter==1.0.0
 ipykernel==6.28.0
 matplotlib==3.8.2
 seaborn==0.13.1
+
+# OCR & layout
+pdfplumber>=0.10.3
+pytesseract>=0.3.10
+python-pptx>=0.6.21
