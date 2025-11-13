@@ -386,3 +386,5 @@ def chunk_text(text: str, **kwargs) -> List[TextChunk]:
     """
     chunker = SemanticChunker(**kwargs)
     return chunker.chunk_document(text)
+
+# Enhancement: recursive chunking for nested headings
