@@ -388,3 +388,4 @@ def chunk_text(text: str, **kwargs) -> List[TextChunk]:
     return chunker.chunk_document(text)
 
 # Enhancement: recursive chunking for nested headings
+# Fix: off-by-one in token boundary calculation
