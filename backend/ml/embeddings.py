@@ -168,3 +168,5 @@ def create_embeddings(texts: Union[str, List[str]], **kwargs) -> np.ndarray:
     """
     generator = EmbeddingGenerator(**kwargs)
     return generator.encode(texts)
+
+# Perf: cache model instance across requests
