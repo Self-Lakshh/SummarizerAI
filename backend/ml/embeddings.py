@@ -170,3 +170,4 @@ def create_embeddings(texts: Union[str, List[str]], **kwargs) -> np.ndarray:
     return generator.encode(texts)
 
 # Perf: cache model instance across requests
+# Enhancement: add batch embedding support for large corpora
