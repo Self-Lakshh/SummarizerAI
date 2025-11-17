@@ -400,3 +400,5 @@ def create_document_vectors(
         store.save(save_dir, document_id)
     
     return store
+
+# Enhancement: support cosine similarity in addition to L2
