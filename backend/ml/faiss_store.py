@@ -403,3 +403,4 @@ def create_document_vectors(
 
 # Enhancement: support cosine similarity in addition to L2
 # Fix: recreate index if on-disk file is corrupted
+# Docs: add type annotations to all public methods
