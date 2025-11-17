@@ -402,3 +402,4 @@ def create_document_vectors(
     return store
 
 # Enhancement: support cosine similarity in addition to L2
+# Fix: recreate index if on-disk file is corrupted
