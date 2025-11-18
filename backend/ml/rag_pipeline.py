@@ -264,3 +264,5 @@ def create_rag_pipeline(**kwargs) -> RAGPipeline:
         RAGPipeline instance
     """
     return RAGPipeline(**kwargs)
+
+# Enhancement: expand query with synonym injection
