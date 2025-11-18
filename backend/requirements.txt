@@ -113,3 +113,4 @@ sentence-transformers>=2.2.2
 torch>=2.1.2
 transformers>=4.36.2
 faiss-cpu>=1.7.4
+openai>=1.6.0
