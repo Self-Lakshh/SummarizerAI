@@ -349,3 +349,4 @@ def generate_summary(
     return summarizer.summarize(document, persona_enum, **kwargs)
 
 # Enhancement: add Research persona with citation-style output
+# Fix: truncate oversized context before sending to LLM
