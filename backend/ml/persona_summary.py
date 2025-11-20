@@ -218,9 +218,9 @@ Document:
                 
                 # Parse bullet points
                 key_points = [
-                    line.strip("- •*").strip()
+                    line.strip("- â€¢*").strip()
                     for line in key_points_text.split("\n")
-                    if line.strip() and (line.strip().startswith("-") or line.strip().startswith("•") or line.strip().startswith("*"))
+                    if line.strip() and (line.strip().startswith("-") or line.strip().startswith("â€¢") or line.strip().startswith("*"))
                 ]
                 
                 logger.info(f"Extracted {len(key_points)} key points")
