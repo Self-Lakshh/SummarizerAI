@@ -347,3 +347,5 @@ def generate_summary(
     summarizer = PersonaSummarizer()
     persona_enum = Persona(persona.lower())
     return summarizer.summarize(document, persona_enum, **kwargs)
+
+# Enhancement: add Research persona with citation-style output
