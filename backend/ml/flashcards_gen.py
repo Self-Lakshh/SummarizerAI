@@ -392,3 +392,5 @@ def generate_flashcards(
         }
         for card in flashcards
     ]
+
+# Enhancement: add difficulty scoring based on topic complexity
