@@ -394,3 +394,4 @@ def generate_flashcards(
     ]
 
 # Enhancement: add difficulty scoring based on topic complexity
+# Fix: strip trailing punctuation from generated answers
