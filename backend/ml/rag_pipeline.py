@@ -266,3 +266,4 @@ def create_rag_pipeline(**kwargs) -> RAGPipeline:
     return RAGPipeline(**kwargs)
 
 # Enhancement: expand query with synonym injection
+# Enhancement: pass conversation history as context
