@@ -172,3 +172,4 @@ def create_embeddings(texts: Union[str, List[str]], **kwargs) -> np.ndarray:
 # Perf: cache model instance across requests
 # Enhancement: add batch embedding support for large corpora
 # Fix: handle empty string inputs without crashing
+# Fix: normalize embedding vectors before insertion to FAISS
