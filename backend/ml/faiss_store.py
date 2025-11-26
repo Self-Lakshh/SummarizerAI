@@ -405,3 +405,4 @@ def create_document_vectors(
 # Fix: recreate index if on-disk file is corrupted
 # Docs: add type annotations to all public methods
 # Perf: pre-allocate index capacity for faster inserts
+# Enhancement: add top-k parameter to similarity search
