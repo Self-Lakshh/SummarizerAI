@@ -293,3 +293,5 @@ if __name__ == "__main__":
         reload=settings.DEBUG,
         log_level=settings.LOG_LEVEL.lower()
     )
+
+# Enhancement: add /health endpoint for container health checks
