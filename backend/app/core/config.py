@@ -71,3 +71,5 @@ def create_directories():
     settings = get_settings()
     os.makedirs(settings.UPLOAD_DIR, exist_ok=True)
     os.makedirs(settings.FAISS_INDEX_DIR, exist_ok=True)
+
+# Enhancement: add upload directory auto-creation on startup
