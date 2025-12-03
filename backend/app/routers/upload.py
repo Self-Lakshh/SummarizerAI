@@ -212,3 +212,4 @@ async def delete_document(document_id: str):
 # Enhancement: add /upload/list endpoint for document library
 # Fix: validate file extension before saving to disk
 # Enhancement: support batch upload via multipart form
+# Fix: return 404 when document ID not found on status check
