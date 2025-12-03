@@ -6,13 +6,33 @@ Handles document upload endpoints
 from fastapi import APIRouter, UploadFile, File, HTTPException, status
 from typing import List
 
-from app.models.schemas import UploadResponse, ErrorResponse
+from app.models.schemas import UploadResponse, ErrorResponse, DocumentInfo
 from app.services.document_service import document_service
 from app.services.ml_service import ml_service
 from app.core.logging_config import get_logger
 
 logger = get_logger(__name__)
 router = APIRouter(prefix="/upload", tags=["upload"])
+
+
+@router.get(
+    "",
+    response_model=List[DocumentInfo],
+    summary="List uploaded documents",
+    description="Retrieve a list of all uploaded documents with metadata and processing status"
+)
+async def list_documents() -> List[DocumentInfo]:
+    """
+    Get a list of all uploaded documents in the system.
+    """
+    try:
+        return document_service.list_documents()
+    except Exception as e:
+        logger.error(f"Failed to list documents: {str(e)}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Failed to list documents: {str(e)}"
+        )
 
 
 @router.post(
