@@ -210,3 +210,4 @@ async def delete_document(document_id: str):
     return None
 
 # Enhancement: add /upload/list endpoint for document library
+# Fix: validate file extension before saving to disk
