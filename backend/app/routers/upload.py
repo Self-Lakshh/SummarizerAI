@@ -208,3 +208,5 @@ async def delete_document(document_id: str):
     
     logger.info(f"Document deleted: {document_id}")
     return None
+
+# Enhancement: add /upload/list endpoint for document library
