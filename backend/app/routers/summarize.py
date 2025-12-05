@@ -205,3 +205,5 @@ async def compare_personas(document_id: str, max_length: int = 500):
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Failed to compare personas: {str(e)}"
         )
+
+# Enhancement: add /summarize/compare for side-by-side persona output
