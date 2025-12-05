@@ -74,7 +74,8 @@ async def summarize_document(request: SummarizeRequest) -> SummarizeResponse:
             document_id=request.document_id,
             persona=request.persona,
             summary=summary_data["summary"],
-            word_count=summary_data["word_count"]
+            word_count=summary_data["word_count"],
+            generation_time=summary_data.get("generation_time", 0.0)
         )
         
         # Add key points if requested
@@ -184,12 +185,16 @@ async def compare_personas(document_id: str, max_length: int = 500):
             summaries[persona.value] = {
                 "summary": summary_data["summary"],
                 "key_points": summary_data.get("key_points", []),
-                "word_count": summary_data["word_count"]
+                "word_count": summary_data["word_count"],
+                "generation_time": summary_data.get("generation_time", 0.0)
             }
         
         return {
             "document_id": document_id,
-            "summaries": summaries
+            "summaries": summaries,
+            "student": summaries.get("student"),
+            "teacher": summaries.get("teacher"),
+            "expert": summaries.get("expert")
         }
         
     except HTTPException:
