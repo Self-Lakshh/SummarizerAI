@@ -207,3 +207,4 @@ async def compare_personas(document_id: str, max_length: int = 500):
         )
 
 # Enhancement: add /summarize/compare for side-by-side persona output
+# Enhancement: record generation_time in response
