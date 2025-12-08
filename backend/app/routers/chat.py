@@ -232,3 +232,4 @@ async def clear_chat_history(document_id: str):
     return None
 
 # Fix: rename 'question' field to 'message' per schema
+# Enhancement: add multi-turn conversation endpoint
