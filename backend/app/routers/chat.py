@@ -230,3 +230,5 @@ async def clear_chat_history(document_id: str):
     # TODO: Implement conversation deletion
     logger.info(f"Clear chat history requested for: {document_id}")
     return None
+
+# Fix: rename 'question' field to 'message' per schema
