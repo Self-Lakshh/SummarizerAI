@@ -75,7 +75,7 @@ async def chat_with_document(request: ChatRequest) -> ChatResponse:
         
         logger.info(
             f"Chat query - Document: {request.document_id}, "
-            f"Question: {request.message[:50]}..."
+            f"Question: {request.question[:50]}..."
         )
         
         # Convert ChatMessage objects to dict for ML service
@@ -87,7 +87,7 @@ async def chat_with_document(request: ChatRequest) -> ChatResponse:
         # Query ML service with RAG pipeline
         chat_data = await ml_service.chat_with_document(
             document_id=request.document_id,
-            question=request.message,
+            question=request.question,
             conversation_history=history,
             top_k=request.top_k
         )
@@ -95,7 +95,7 @@ async def chat_with_document(request: ChatRequest) -> ChatResponse:
         # Build response
         response = ChatResponse(
             document_id=request.document_id,
-            question=request.message,
+            question=request.question,
             answer=chat_data["answer"],
             relevant_chunks=chat_data.get("relevant_chunks", []),
             confidence_score=chat_data.get("confidence_score"),
@@ -165,7 +165,7 @@ async def multi_turn_chat(
             # Create request for this turn
             request = ChatRequest(
                 document_id=document_id,
-                message=question,
+                question=question,
                 conversation_history=[
                     ChatMessage(**msg) for msg in conversation_history
                 ],
