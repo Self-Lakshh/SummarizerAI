@@ -83,6 +83,12 @@ async def generate_flashcards(request: FlashcardsRequest) -> FlashcardsResponse:
         # Convert to Flashcard objects
         flashcards = [Flashcard(**card) for card in flashcards_data]
         
+        # Save generated flashcards in document JSON
+        doc_data = document_service.get_processed_document(request.document_id)
+        if doc_data:
+            doc_data["flashcards"] = flashcards_data
+            document_service.save_processed_document(request.document_id, doc_data)
+        
         # Build response
         response = FlashcardsResponse(
             document_id=request.document_id,
@@ -210,11 +216,21 @@ async def create_custom_flashcard(
             question=question,
             answer=answer,
             difficulty=difficulty,
-            topic=topic
+            topic=topic or "General"
         )
         
-        # TODO: Store custom flashcard in database
-        # db.save_flashcard(document_id, flashcard)
+        # Store custom flashcard in document JSON
+        doc_data = document_service.get_processed_document(document_id)
+        if doc_data:
+            if "flashcards" not in doc_data:
+                doc_data["flashcards"] = []
+            doc_data["flashcards"].append({
+                "question": flashcard.question,
+                "answer": flashcard.answer,
+                "difficulty": flashcard.difficulty,
+                "topic": flashcard.topic
+            })
+            document_service.save_processed_document(document_id, doc_data)
         
         logger.info(f"Custom flashcard created for {document_id}")
         return flashcard
@@ -261,15 +277,65 @@ async def export_flashcards(
                 detail="Format must be 'json', 'csv', or 'anki'"
             )
         
-        # TODO: Implement flashcard export
-        # flashcards = get_flashcards(document_id)
-        # exported_data = export_to_format(flashcards, format)
+        # Retrieve flashcards from document JSON
+        doc_data = document_service.get_processed_document(document_id)
+        cards = []
+        if doc_data and "flashcards" in doc_data:
+            cards = doc_data["flashcards"]
         
-        return {
-            "message": "Export functionality coming soon",
-            "document_id": document_id,
-            "format": format
-        }
+        if not cards:
+            logger.info(f"No flashcards stored for {document_id}, generating on the fly")
+            from app.models.schemas import FlashcardsRequest
+            await generate_flashcards(FlashcardsRequest(document_id=document_id, num_cards=10))
+            doc_data = document_service.get_processed_document(document_id)
+            if doc_data and "flashcards" in doc_data:
+                cards = doc_data["flashcards"]
+        
+        from fastapi.responses import StreamingResponse
+        import io
+        
+        if format == "json":
+            import json
+            content = json.dumps(cards, indent=2, ensure_ascii=False)
+            media_type = "application/json"
+            filename = f"flashcards_{document_id}.json"
+            return StreamingResponse(
+                io.BytesIO(content.encode("utf-8")),
+                media_type=media_type,
+                headers={"Content-Disposition": f"attachment; filename={filename}"}
+            )
+            
+        elif format == "csv":
+            import csv
+            output = io.StringIO()
+            writer = csv.writer(output)
+            writer.writerow(["Question", "Answer", "Difficulty", "Topic"])
+            for card in cards:
+                writer.writerow([card["question"], card["answer"], card["difficulty"], card["topic"]])
+            content = output.getvalue()
+            media_type = "text/csv"
+            filename = f"flashcards_{document_id}.csv"
+            return StreamingResponse(
+                io.BytesIO(content.encode("utf-8")),
+                media_type=media_type,
+                headers={"Content-Disposition": f"attachment; filename={filename}"}
+            )
+            
+        elif format == "anki":
+            output = io.StringIO()
+            for card in cards:
+                q = card["question"].replace("\t", " ").replace("\n", " ")
+                a = card["answer"].replace("\t", " ").replace("\n", " ")
+                t = card["topic"].replace("\t", " ").replace("\n", " ")
+                output.write(f"{q}\t{a}\t{t}\n")
+            content = output.getvalue()
+            media_type = "text/plain"
+            filename = f"flashcards_{document_id}.txt"
+            return StreamingResponse(
+                io.BytesIO(content.encode("utf-8")),
+                media_type=media_type,
+                headers={"Content-Disposition": f"attachment; filename={filename}"}
+            )
         
     except HTTPException:
         raise
