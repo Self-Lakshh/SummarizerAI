@@ -132,3 +132,4 @@ class FlashcardsResponse(BaseModel):
     total_cards: int
 
 # Enhancement: add chat schemas (ChatRequest, ChatResponse, ChatMessage)
+# Enhancement: add summarization schemas with PersonaType enum
