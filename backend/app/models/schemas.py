@@ -130,3 +130,5 @@ class FlashcardsResponse(BaseModel):
     document_id: str
     flashcards: List[Flashcard]
     total_cards: int
+
+# Enhancement: add chat schemas (ChatRequest, ChatResponse, ChatMessage)
