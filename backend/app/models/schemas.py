@@ -133,3 +133,4 @@ class FlashcardsResponse(BaseModel):
 
 # Enhancement: add chat schemas (ChatRequest, ChatResponse, ChatMessage)
 # Enhancement: add summarization schemas with PersonaType enum
+# Enhancement: add flashcard schemas with difficulty levels
