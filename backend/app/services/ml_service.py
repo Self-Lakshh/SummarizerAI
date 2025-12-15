@@ -448,3 +448,4 @@ ml_service = MLService()
 
 # Enhancement: add document text caching to avoid re-OCR
 # Fix: propagate pipeline errors as HTTPException with detail
+# Enhancement: generate_flashcards now accepts difficulty filter
