@@ -445,3 +445,5 @@ class MLService:
 
 # Singleton instance
 ml_service = MLService()
+
+# Enhancement: add document text caching to avoid re-OCR
