@@ -7,7 +7,7 @@ import os
 import uuid
 import hashlib
 from pathlib import Path
-from typing import Optional, Tuple
+from typing import Optional, Tuple, List
 from datetime import datetime
 import shutil
 
@@ -29,8 +29,10 @@ class DocumentService:
         # Create subdirectories for organization
         self.pdf_dir = self.upload_dir / "pdf"
         self.ppt_dir = self.upload_dir / "ppt"
+        self.processed_dir = self.upload_dir / "processed"
         self.pdf_dir.mkdir(exist_ok=True)
         self.ppt_dir.mkdir(exist_ok=True)
+        self.processed_dir.mkdir(exist_ok=True)
     
     def validate_file(self, filename: str, file_size: int) -> Tuple[bool, Optional[str]]:
         """
@@ -140,52 +142,117 @@ class DocumentService:
         logger.warning(f"Document not found: {document_id}")
         return None
     
+    def save_processed_document(self, document_id: str, document_data: dict) -> None:
+        """Save processed document text and layout data as JSON"""
+        try:
+            import json
+            target_path = self.processed_dir / f"{document_id}.json"
+            with open(target_path, "w", encoding="utf-8") as f:
+                json.dump(document_data, f, ensure_ascii=False, indent=2)
+            logger.info(f"Saved processed document json to {target_path}")
+        except Exception as e:
+            logger.error(f"Failed to save processed document json for {document_id}: {str(e)}")
+            raise
+
+    def get_processed_document(self, document_id: str) -> Optional[dict]:
+        """Retrieve processed document text and layout data from JSON"""
+        try:
+            import json
+            target_path = self.processed_dir / f"{document_id}.json"
+            if not target_path.exists():
+                logger.warning(f"Processed json not found for: {document_id}")
+                return None
+            with open(target_path, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception as e:
+            logger.error(f"Failed to load processed document json for {document_id}: {str(e)}")
+            return None
+
+    def list_documents(self) -> List[DocumentInfo]:
+        """List all uploaded documents with metadata and status"""
+        documents = []
+        for directory in [self.pdf_dir, self.ppt_dir]:
+            if not directory.exists():
+                continue
+            for file_path in directory.iterdir():
+                if file_path.is_file() and file_path.suffix in settings.ALLOWED_EXTENSIONS:
+                    doc_id = file_path.stem
+                    info = self.get_document_info(doc_id)
+                    if info:
+                        documents.append(info)
+        return sorted(documents, key=lambda x: x.uploaded_at, reverse=True)
+
     def delete_document(self, document_id: str) -> bool:
-        """
-        Delete a document and its associated files
-        
-        Args:
-            document_id: Document identifier
-            
-        Returns:
-            True if deleted, False if not found
-        """
+        """Delete a document and all associated processing metadata and indices"""
         file_path = self.get_document_path(document_id)
+        deleted = False
+        
         if file_path and file_path.exists():
             try:
                 file_path.unlink()
-                logger.info(f"Document deleted: {document_id}")
-                return True
+                logger.info(f"Uploaded file deleted: {file_path}")
+                deleted = True
             except Exception as e:
-                logger.error(f"Failed to delete document {document_id}: {str(e)}")
+                logger.error(f"Failed to delete document file {file_path}: {str(e)}")
                 raise
-        return False
+                
+        processed_path = self.processed_dir / f"{document_id}.json"
+        if processed_path.exists():
+            try:
+                processed_path.unlink()
+                logger.info(f"Processed JSON deleted: {processed_path}")
+                deleted = True
+            except Exception as e:
+                logger.error(f"Failed to delete processed json {processed_path}: {str(e)}")
+                
+        faiss_dir = Path(settings.FAISS_INDEX_DIR)
+        index_path = faiss_dir / f"{document_id}.index"
+        meta_path = faiss_dir / f"{document_id}.metadata.pkl"
+        if index_path.exists():
+            try:
+                index_path.unlink()
+                logger.info(f"FAISS index deleted: {index_path}")
+                deleted = True
+            except Exception as e:
+                logger.error(f"Failed to delete FAISS index: {str(e)}")
+        if meta_path.exists():
+            try:
+                meta_path.unlink()
+                logger.info(f"FAISS metadata deleted: {meta_path}")
+                deleted = True
+            except Exception as e:
+                logger.error(f"Failed to delete FAISS metadata: {str(e)}")
+                
+        return deleted
     
     def get_document_info(self, document_id: str) -> Optional[DocumentInfo]:
-        """
-        Retrieve metadata about a document
-        
-        Args:
-            document_id: Document identifier
-            
-        Returns:
-            DocumentInfo object or None if not found
-        """
+        """Retrieve metadata about a document"""
         file_path = self.get_document_path(document_id)
         if not file_path:
             return None
         
         stat = file_path.stat()
         
+        processed_path = self.processed_dir / f"{document_id}.json"
+        is_processed = processed_path.exists()
+        
+        faiss_dir = Path(settings.FAISS_INDEX_DIR)
+        index_path = faiss_dir / f"{document_id}.index"
+        embeddings_created = index_path.exists()
+        
+        status = DocumentStatus.COMPLETED if is_processed else DocumentStatus.PROCESSING
+        processed_at = datetime.fromtimestamp(processed_path.stat().st_mtime) if is_processed else None
+        
         return DocumentInfo(
             document_id=document_id,
             filename=file_path.name,
             file_size=stat.st_size,
             file_type=file_path.suffix,
-            status=DocumentStatus.COMPLETED,
+            status=status,
             uploaded_at=datetime.fromtimestamp(stat.st_ctime),
-            processed_at=datetime.fromtimestamp(stat.st_mtime),
-            embeddings_created=False  # Will be updated by ML service
+            processed_at=processed_at,
+            embeddings_created=embeddings_created,
+            upload_time=datetime.fromtimestamp(stat.st_ctime)
         )
 
 
