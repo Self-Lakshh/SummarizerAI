@@ -258,3 +258,5 @@ class DocumentService:
 
 # Singleton instance
 document_service = DocumentService()
+
+# Enhancement: add list_documents with pagination support
