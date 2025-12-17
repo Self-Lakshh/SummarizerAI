@@ -260,3 +260,4 @@ class DocumentService:
 document_service = DocumentService()
 
 # Enhancement: add list_documents with pagination support
+# Fix: import List from typing for Python 3.10 compatibility
