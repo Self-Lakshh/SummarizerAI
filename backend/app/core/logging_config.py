@@ -60,3 +60,5 @@ def get_logger(name: str) -> logging.Logger:
         Configured logger instance
     """
     return logging.getLogger(name)
+
+# Enhancement: add request-id to every log line for tracing
