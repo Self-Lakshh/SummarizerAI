@@ -214,3 +214,4 @@ async def delete_document(document_id: str):
 # Enhancement: support batch upload via multipart form
 # Fix: return 404 when document ID not found on status check
 # Security: limit upload to MAX_UPLOAD_SIZE from config
+# Enhancement: add Content-Disposition header on file serve
