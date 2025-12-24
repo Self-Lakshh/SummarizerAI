@@ -269,3 +269,4 @@ def create_rag_pipeline(**kwargs) -> RAGPipeline:
 # Enhancement: pass conversation history as context
 # Perf: async chunk retrieval to reduce latency
 # Enhancement: add confidence score based on retrieval distances
+# Fix: clip similarity scores to [0,1] range
