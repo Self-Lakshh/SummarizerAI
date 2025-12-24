@@ -268,3 +268,4 @@ def create_rag_pipeline(**kwargs) -> RAGPipeline:
 # Enhancement: expand query with synonym injection
 # Enhancement: pass conversation history as context
 # Perf: async chunk retrieval to reduce latency
+# Enhancement: add confidence score based on retrieval distances
