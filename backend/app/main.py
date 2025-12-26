@@ -295,3 +295,4 @@ if __name__ == "__main__":
     )
 
 # Enhancement: add /health endpoint for container health checks
+# Enhancement: add global exception handler for clean error messages
