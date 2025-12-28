@@ -351,3 +351,4 @@ def generate_summary(
 # Enhancement: add Research persona with citation-style output
 # Fix: truncate oversized context before sending to LLM
 # Refactor: extract prompt templates to separate module
+# Enhancement: implement summary caching keyed by doc+persona
