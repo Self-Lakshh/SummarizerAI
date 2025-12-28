@@ -390,3 +390,4 @@ def chunk_text(text: str, **kwargs) -> List[TextChunk]:
 # Enhancement: recursive chunking for nested headings
 # Fix: off-by-one in token boundary calculation
 # Config: make chunk size and overlap externally configurable
+# Enhancement: add sentence-level chunking as third strategy
