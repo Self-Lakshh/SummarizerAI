@@ -73,3 +73,4 @@ def create_directories():
     os.makedirs(settings.FAISS_INDEX_DIR, exist_ok=True)
 
 # Enhancement: add upload directory auto-creation on startup
+# Enhancement: add RATE_LIMIT_PER_MINUTE setting
