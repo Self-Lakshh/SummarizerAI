@@ -6,6 +6,7 @@ import UploadPage from '@/pages/UploadPage';
 import SummarizePage from '@/pages/SummarizePage';
 import ChatPage from '@/pages/ChatPage';
 import FlashcardsPage from '@/pages/FlashcardsPage';
+import LibraryPage from '@/pages/LibraryPage';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="upload" element={<UploadPage />} />
+          <Route path="library" element={<LibraryPage />} />
           <Route path="summarize" element={<SummarizePage />} />
           <Route path="chat" element={<ChatPage />} />
           <Route path="flashcards" element={<FlashcardsPage />} />
