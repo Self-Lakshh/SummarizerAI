@@ -65,3 +65,4 @@ export default function Layout() {
 }
 
 /* Enhancement: highlight active nav item with accent color */
+/* Enhancement: add Document Library link to sidebar */
