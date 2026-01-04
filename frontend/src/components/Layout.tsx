@@ -1,10 +1,11 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import { FileText, Upload, MessageSquare, GraduationCap, Home } from 'lucide-react';
+import { FileText, Upload, MessageSquare, GraduationCap, Home, FolderOpen } from 'lucide-react';
 import { cn } from '../lib/utils';
 
 const navigation = [
     { name: 'Home', href: '/', icon: Home },
     { name: 'Upload', href: '/upload', icon: Upload },
+    { name: 'Library', href: '/library', icon: FolderOpen },
     { name: 'Summarize', href: '/summarize', icon: FileText },
     { name: 'Chat', href: '/chat', icon: MessageSquare },
     { name: 'Flashcards', href: '/flashcards', icon: GraduationCap },
@@ -56,7 +57,7 @@ export default function Layout() {
             {/* Footer */}
             <footer className="border-t mt-auto">
                 <div className="container mx-auto px-4 py-6 text-center text-sm text-muted-foreground">
-                    <p>© 2026 SummarizerAI. Powered by Deep Learning.</p>
+                    <p>Â© 2026 SummarizerAI. Powered by Deep Learning.</p>
                 </div>
             </footer>
         </div>
