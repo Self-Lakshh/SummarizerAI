@@ -63,3 +63,5 @@ export default function Layout() {
         </div>
     );
 }
+
+/* Enhancement: highlight active nav item with accent color */
