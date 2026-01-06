@@ -1,11 +1,12 @@
 import { create } from 'zustand';
-import { UploadResponse } from '../services/api';
+import type { UploadResponse } from '../services/api';
 
 interface Message {
     id: string;
     role: 'user' | 'assistant';
     content: string;
     timestamp: Date;
+    sources?: Array<{ chunk_id: string; relevance_score: number; text: string }>;
 }
 
 interface AppState {
@@ -14,6 +15,7 @@ interface AppState {
     uploadedDocuments: UploadResponse[];
     setCurrentDocument: (doc: UploadResponse | null) => void;
     addUploadedDocument: (doc: UploadResponse) => void;
+    setUploadedDocuments: (docs: UploadResponse[]) => void;
     removeDocument: (documentId: string) => void;
 
     // Chat state
@@ -37,6 +39,7 @@ export const useStore = create<AppState>((set) => ({
         set((state) => ({
             uploadedDocuments: [...state.uploadedDocuments, doc],
         })),
+    setUploadedDocuments: (docs) => set({ uploadedDocuments: docs }),
     removeDocument: (documentId) =>
         set((state) => ({
             uploadedDocuments: state.uploadedDocuments.filter(
