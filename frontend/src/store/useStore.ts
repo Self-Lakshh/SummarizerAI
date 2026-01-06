@@ -72,3 +72,5 @@ export const useStore = create<AppState>((set) => ({
     error: null,
     setError: (error) => set({ error }),
 }));
+
+/* Enhancement: add library documents array to store */
