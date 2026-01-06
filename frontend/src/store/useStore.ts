@@ -74,3 +74,4 @@ export const useStore = create<AppState>((set) => ({
 }));
 
 /* Enhancement: add library documents array to store */
+/* Fix: use import type for DocumentInfo to satisfy verbatimModuleSyntax */
