@@ -257,3 +257,5 @@ export const apiService = {
 };
 
 export default apiService;
+
+/* Fix: align ChatResponse interface with backend payload */
