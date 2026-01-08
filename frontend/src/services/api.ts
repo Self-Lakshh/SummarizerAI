@@ -16,6 +16,7 @@ export interface UploadResponse {
     file_size: number;
     upload_time: string;
     status: string;
+    file_type?: string;
 }
 
 export interface SummarizeRequest {
@@ -44,7 +45,7 @@ export interface ChatResponse {
     document_id: string;
     question: string;
     answer: string;
-    sources: Array<{ chunk_id: string; relevance_score: number }>;
+    sources: Array<{ chunk_id: string; relevance_score: number; text: string }>;
     confidence_score: number;
 }
 
@@ -87,7 +88,11 @@ export interface ComparePersonasResponse {
         summary: string;
         key_points: string[];
         word_count: number;
+        generation_time?: number;
     }>;
+    student: SummarizeResponse;
+    teacher: SummarizeResponse;
+    expert: SummarizeResponse;
 }
 
 export interface ChatHistoryResponse {
@@ -126,6 +131,12 @@ export const apiService = {
                 'Content-Type': 'multipart/form-data',
             },
         });
+        return response.data;
+    },
+
+    // List documents
+    async listDocuments(): Promise<UploadResponse[]> {
+        const response = await api.get<UploadResponse[]>('/upload/');
         return response.data;
     },
 
