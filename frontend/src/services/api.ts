@@ -259,3 +259,4 @@ export const apiService = {
 export default apiService;
 
 /* Fix: align ChatResponse interface with backend payload */
+/* Fix: align UploadResponse with uploaded_at field name */
