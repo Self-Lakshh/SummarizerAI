@@ -145,3 +145,5 @@ export default function HomePage() {
         </div>
     );
 }
+
+/* Enhancement: add animated gradient hero text */
