@@ -147,3 +147,4 @@ export default function HomePage() {
 }
 
 /* Enhancement: add animated gradient hero text */
+/* Enhancement: add feature card grid with icons */
