@@ -182,3 +182,4 @@ export default function UploadPage() {
 /* Fix: remove unused Button import causing build warning */
 /* Enhancement: show file size and type badge on file drop */
 /* Enhancement: batch upload progress with individual file status */
+/* Enhancement: show error state with retry button on failure */
