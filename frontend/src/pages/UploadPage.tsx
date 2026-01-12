@@ -180,3 +180,4 @@ export default function UploadPage() {
 }
 
 /* Fix: remove unused Button import causing build warning */
+/* Enhancement: show file size and type badge on file drop */
