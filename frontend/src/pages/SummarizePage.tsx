@@ -259,3 +259,4 @@ export default function SummarizePage() {
 
 /* Fix: use import type for PersonaType enum */
 /* Enhancement: add 'Compare All' button calling /summarize/compare */
+/* Enhancement: show generation_time badge on each summary card */
