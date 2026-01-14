@@ -5,7 +5,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs'
 import { Label } from '../components/ui/label';
 import { useToast } from '../hooks/use-toast';
 import { useStore } from '../store/useStore';
-import { apiService, SummarizeResponse } from '../services/api';
+import { apiService } from '../services/api';
+import type { SummarizeResponse } from '../services/api';
 import { FileText, Loader2, GraduationCap, Briefcase, BookOpen } from 'lucide-react';
 
 type Persona = 'student' | 'teacher' | 'expert';
@@ -135,7 +136,7 @@ export default function SummarizePage() {
                         {currentDocument.filename}
                     </CardTitle>
                     <CardDescription>
-                        {(currentDocument.file_size / 1024).toFixed(2)} KB • Uploaded {new Date(currentDocument.upload_time).toLocaleDateString()}
+                        {(currentDocument.file_size / 1024).toFixed(2)} KB â€¢ Uploaded {new Date(currentDocument.upload_time).toLocaleDateString()}
                     </CardDescription>
                 </CardHeader>
             </Card>
@@ -215,7 +216,7 @@ export default function SummarizePage() {
                                 <CardHeader>
                                     <CardTitle>{personaInfo[persona].label} Summary</CardTitle>
                                     <CardDescription>
-                                        {summaries[persona]!.word_count} words • Generated in {summaries[persona]!.generation_time.toFixed(2)}s
+                                        {summaries[persona]!.word_count} words â€¢ Generated in {summaries[persona]!.generation_time.toFixed(2)}s
                                     </CardDescription>
                                 </CardHeader>
                                 <CardContent className="space-y-4">
@@ -231,7 +232,7 @@ export default function SummarizePage() {
                                             <ul className="space-y-1">
                                                 {summaries[persona]!.key_points!.map((point, index) => (
                                                     <li key={index} className="text-sm text-muted-foreground flex items-start">
-                                                        <span className="mr-2">•</span>
+                                                        <span className="mr-2">â€¢</span>
                                                         <span>{point}</span>
                                                     </li>
                                                 ))}
