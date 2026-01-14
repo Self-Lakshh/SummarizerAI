@@ -256,3 +256,5 @@ export default function SummarizePage() {
         </div>
     );
 }
+
+/* Fix: use import type for PersonaType enum */
