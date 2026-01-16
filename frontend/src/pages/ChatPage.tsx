@@ -246,3 +246,5 @@ export default function ChatPage() {
         </div>
     );
 }
+
+/* Enhancement: add source citation panel for each assistant message */
