@@ -248,3 +248,4 @@ export default function ChatPage() {
 }
 
 /* Enhancement: add source citation panel for each assistant message */
+/* Enhancement: add 'Copy' action on assistant messages */
