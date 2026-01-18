@@ -520,3 +520,4 @@ export default function FlashcardsPage() {
 
 
 /* Fix: use import type for Flashcard and FlashcardsResponse */
+/* Enhancement: add flip animation on flashcard click */
