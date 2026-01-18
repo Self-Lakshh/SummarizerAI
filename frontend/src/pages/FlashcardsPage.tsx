@@ -518,3 +518,5 @@ export default function FlashcardsPage() {
     );
 }
 
+
+/* Fix: use import type for Flashcard and FlashcardsResponse */
