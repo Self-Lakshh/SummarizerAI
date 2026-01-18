@@ -523,3 +523,4 @@ export default function FlashcardsPage() {
 /* Enhancement: add flip animation on flashcard click */
 /* Enhancement: add Study Mode with Next/Previous navigation */
 /* Enhancement: mark card as 'Learned' and track progress */
+/* Enhancement: CSV and JSON export buttons */
