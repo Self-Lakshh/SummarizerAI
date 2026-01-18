@@ -15,18 +15,18 @@ Write-Host ""
 $rootDir = Get-Location
 
 # Start backend in new terminal
-Start-Process pwsh -ArgumentList "-NoExit", "-Command", "cd '$rootDir'; .\run_backend.ps1"
+Start-Process powershell -ArgumentList "-NoExit", "-Command", "cd '$rootDir'; .\run_backend.ps1"
 
 # Wait 3 seconds for backend to start
-Write-Host "⏳ Waiting for backend to initialize..." -ForegroundColor Gray
+Write-Host "Waiting for backend to initialize..." -ForegroundColor Gray
 Start-Sleep -Seconds 3
 
 # Start frontend in new terminal
-Start-Process pwsh -ArgumentList "-NoExit", "-Command", "cd '$rootDir'; .\run_frontend.ps1"
+Start-Process powershell -ArgumentList "-NoExit", "-Command", "cd '$rootDir'; .\run_frontend.ps1"
 
 Write-Host ""
 Write-Host "========================================" -ForegroundColor Cyan
-Write-Host "✓ Both servers launched!" -ForegroundColor Green
+Write-Host "Both servers launched!" -ForegroundColor Green
 Write-Host "========================================" -ForegroundColor Cyan
 Write-Host ""
 Write-Host "Backend: http://localhost:8000" -ForegroundColor Green
