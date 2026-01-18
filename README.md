@@ -1,246 +1,231 @@
-# 🤖 **DocuMind AI — Intelligent Document Understanding System**
+# SummarizerAI - Complete Monorepo
 
-<div align="center">
+AI-powered document understanding with deep learning. Complete full-stack application in one repository.
 
-**Deep Learning • Transformers • RAG • Semantic Search • AI Tutoring**
-
-</div>
-
----
-
-## 🎯 **Project Title**
-
-> **Deep Learning–Driven Intelligent Document Understanding with Persona-Aware Interactive Learning System**
-
----
-
-## 📌 **Overview**
-
-**DocuMind AI** is an end-to-end intelligent learning system that:
-
-* 📄 Understands **PDF & PPT** documents using Deep Learning
-* 🧠 Builds **semantic representations using Transformers**
-* 🔍 Enables **RAG-based Chat with Documents**
-* 🎭 Provides **Persona-aware Summarization (Student / Teacher / Expert)**
-* 🃏 Generates **AI-powered Flashcards** for active learning
-
-Unlike traditional tools, DocuMind does not just extract text — it **understands, reasons, retrieves, and teaches.**
-
----
-
-## 🧠 **Core AI Philosophy**
-
-The system follows a three-layer intelligence model:
-
-1. **Perception Layer (Deep Document Understanding)**
-
-   * Layout Analysis (Neural Vision Models)
-   * Deep Learning-based OCR
-   * Structural understanding of headings, tables, lists, images
-
-2. **Representation Layer (Semantic Meaning)**
-
-   * Transformer-based embeddings (Sentence-BERT)
-   * Semantic chunking (meaningful text segmentation)
-   * FAISS vector store for efficient retrieval
-
-3. **Reasoning Layer (Generative AI + RAG)**
-
-   * Retrieval-Augmented Generation (RAG)
-   * Persona-aware responses
-   * Grounded, document-backed answers
-
----
-
-## 🚀 **Key Features**
-
-### 📂 1) Smart Document Ingestion
-
-* Supports **PDF & PPT**
-* DL-based layout analysis
-* Robust OCR for scanned documents
-* Structured text extraction
-
-### 🗨️ 2) Chat with PDF (RAG-based)
-
-Ask questions like:
-
-* “Explain this simply”
-* “Summarize this section”
-* “Give real-world examples”
-* “Compare concepts from page 3 and 7”
-
-### 🎭 3) Persona-Aware Summarization
-
-Summaries are adapted to three personas:
-
-| Persona       | Style                                 |
-| ------------- | ------------------------------------- |
-| 👨‍🎓 Student | Simple, intuitive, conceptual         |
-| 👩‍🏫 Teacher | Structured, explanatory, pedagogical  |
-| 🧑‍💼 Expert  | Technical, analytical, insight-driven |
-
-### 🃏 4) AI Flashcards
-
-Automatically generated:
-
-* Question–Answer cards
-* Concept-focused learning artifacts
-* AI-curated for clarity and relevance
-
----
-
-## 🏗️ **System Architecture**
+## 📁 Project Structure
 
 ```
-+-----------------------+
-|   React Frontend      |
-|  (TS + Tailwind + UI) |
-+----------+------------+
-           |
-           v
-+-----------------------+
-|      FastAPI          |
-|  (Python Backend)     |
-+----------+------------+
-           |
-           v
-+-----------------------+        +--------------------+
-|  Document Processor   | -----> |  FAISS Vector DB   |
-| (Layout + OCR + Chunk)|        | (Embeddings Store) |
-+----------+------------+        +--------------------+
-           |
-           v
-+-----------------------+
-|  Transformer Encoder  |
-| (Sentence-BERT)       |
-+----------+------------+
-           |
-           v
-+-----------------------+
-|   RAG + LLM Engine    |
-| (Chat, Summary, Cards)|
-+-----------------------+
+/
+├── backend/              # Backend API + ML Pipeline
+│   ├── app/             # FastAPI application
+│   │   ├── core/        # Configuration & logging
+│   │   ├── models/      # Pydantic schemas
+│   │   ├── routers/     # API endpoints (upload, summarize, chat, flashcards)
+│   │   └── services/    # Business logic
+│   ├── ml/              # ML Pipeline (7 modules)
+│   │   ├── layout_ocr.py       # Document processing with OCR
+│   │   ├── chunking.py         # Semantic text segmentation
+│   │   ├── embeddings.py       # Sentence-BERT embeddings
+│   │   ├── faiss_store.py      # FAISS vector search
+│   │   ├── rag_pipeline.py     # RAG Q&A system
+│   │   ├── persona_summary.py  # Persona-aware summarization
+│   │   └── flashcards_gen.py   # AI flashcard generation
+│   ├── tests/           # Backend tests
+│   └── requirements.txt # Python dependencies
+│
+├── frontend/            # React Frontend
+│   ├── src/
+│   │   ├── components/  # UI components (Layout + shadcn/ui)
+│   │   ├── pages/       # 5 pages (Home, Upload, Summarize, Chat, Flashcards)
+│   │   ├── services/    # API client (16 endpoints)
+│   │   └── store/       # Zustand state management
+│   └── package.json     # Node dependencies
+│
+├── run_backend.ps1      # One-click backend launcher
+├── run_frontend.ps1     # One-click frontend launcher
+└── run_all.ps1          # Launch both servers
 ```
 
----
+## 🚀 Quick Start (30 Seconds)
 
-## 🛠️ **Technology Stack**
-
-### 🎨 Frontend
-
-* ⚛️ **React**
-* 🟦 **TypeScript**
-* 🎨 **Tailwind CSS**
-* 🧩 **shadcn/ui**
-* ⚡ Hosted on **Vercel**
-
-### 🐍 Backend
-
-* **FastAPI (Python)**
-* RESTful API architecture
-
-### 🧠 AI / Deep Learning
-
-* **LayoutLM / Donut** — Document layout analysis
-* **Deep Learning OCR** — Text recognition
-* **Sentence-BERT** — Semantic embeddings
-* **FAISS** — Vector similarity search
-* **LLM (OpenAI / Open-source)** — Summarization & Q&A
-
-### 💾 Storage
-
-* Local storage / Firebase for documents
-* FAISS files for embeddings
-
----
-
-## 🌿 **Git Branch Strategy**
-
+### One Command Launch
+```powershell
+.\run_all.ps1
 ```
-main      → Final stable version
-dev       → Integration branch
-frontend  → All UI work
-backend   → FastAPI & APIs
-ml        → Deep Learning & RAG pipeline
+✅ **Backend**: http://localhost:8000 (API Docs: /docs)  
+✅ **Frontend**: http://localhost:3000
+
+### Manual Launch
+
+**Terminal 1 - Backend:**
+```powershell
+.\run_backend.ps1
 ```
 
----
-
-## 📁 **Project Structure (Simplified)**
-
-```
-/frontend
-  ├── src/
-  │   ├── components/
-  │   ├── pages/
-  │   ├── services/
-  │   └── lib/
-
-/backend
-  ├── app/
-  │   ├── main.py
-  │   ├── routers/
-  │   ├── services/
-  │   └── models/
-
-/ml
-  ├── layout_ocr.py
-  ├── chunking.py
-  ├── embeddings.py
-  ├── faiss_store.py
-  └── rag_pipeline.py
+**Terminal 2 - Frontend:**
+```powershell
+.\run_frontend.ps1
 ```
 
+## 🛠️ Setup (First Time Only)
+
+### Backend Setup
+```powershell
+cd backend
+python -m venv venv
+.\venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+
+# Create .env file
+Copy-Item .env.example .env
+# Add your OPENAI_API_KEY to .env
+
+# Download NLTK data
+python -c "import nltk; nltk.download('punkt')"
+```
+
+### Frontend Setup
+```powershell
+cd frontend
+npm install --legacy-peer-deps
+
+# Frontend uses backend at http://localhost:8000 (configured in vite.config.ts)
+```
+
+## 🎯 Features
+
+### Backend (FastAPI + Python)
+- **Upload API** - PDF and PowerPoint processing with batch support
+- **Summarization** - Persona-aware (Student/Teacher/Expert) summaries
+- **Chat API** - RAG-powered document Q&A with conversation history
+- **Flashcards** - AI-generated study cards with difficulty levels
+
+### ML Pipeline (PyTorch + Transformers)
+- **OCR** - Layout-aware document processing (Tesseract + pdfplumber)
+- **Embeddings** - Sentence-BERT semantic vectors (all-mpnet-base-v2)
+- **FAISS** - Fast similarity search for document retrieval
+- **RAG** - Retrieval-Augmented Generation for accurate Q&A
+- **Summarization** - LLM-based adaptive summaries with personas
+
+### Frontend (React + TypeScript)
+- **Upload Page** - Drag & drop interface with react-dropzone
+- **Summarize** - Multi-persona summaries with comparison
+- **Chat** - Interactive document Q&A with history
+- **Flashcards** - Generate, view, and export study cards
+- **State Management** - Zustand for global state
+- **UI Components** - shadcn/ui + Tailwind CSS
+
+## 📚 Tech Stack
+
+### Backend
+- FastAPI 0.109.0
+- Python 3.10+
+- Pydantic 2.5.3
+- Uvicorn
+
+### ML/DL
+- PyTorch 2.1.2
+- Transformers 4.36.2
+- Sentence-Transformers 2.2.2
+- FAISS 1.7.4
+- OpenAI API
+- pdfplumber, pytesseract
+
+### Frontend
+- React 18.2
+- TypeScript 5.9
+- Vite 7.2
+- Tailwind CSS 3.4
+- shadcn/ui
+- React Router 6
+- Zustand 4.4
+- Axios 1.6
+
+## 🧪 Testing
+
+### Backend Tests
+```powershell
+cd backend
+pytest tests/
+```
+
+### API Testing
+```powershell
+# Start backend first
+cd backend
+.\venv\Scripts\Activate.ps1
+uvicorn app.main:app --reload
+
+# Visit http://localhost:8000/docs for interactive API testing
+```
+
+### Full Integration Test
+1. Start both servers: `.\run_all.ps1`
+2. Open: http://localhost:3000
+3. Upload a PDF
+4. Test summarization, chat, and flashcards
+
+## 📖 API Endpoints
+
+### Upload (4 endpoints)
+- `POST /upload/` - Upload document
+- `POST /upload/batch` - Upload multiple documents
+- `GET /upload/status/{id}` - Get upload status
+- `DELETE /upload/{id}` - Delete document
+
+### Summarize (3 endpoints)
+- `POST /summarize/` - Generate summary for specific persona
+- `GET /summarize/personas` - Get available persona information
+- `POST /summarize/compare` - Compare all personas simultaneously
+
+### Chat (5 endpoints)
+- `POST /chat/` - Chat with document
+- `POST /chat/multi-turn` - Multi-turn conversation
+- `GET /chat/history/{id}` - Get chat history
+- `DELETE /chat/history/{id}` - Clear history
+- `GET /chat/context/{id}` - Get conversation context
+
+### Flashcards (4 endpoints)
+- `POST /flashcards/` - Generate flashcards
+- `GET /flashcards/preview/{id}` - Preview topics
+- `POST /flashcards/custom` - Create custom card
+- `GET /flashcards/export/{id}` - Export flashcards (JSON/CSV)
+
+## 🔧 Configuration
+
+### Backend (.env)
+```env
+OPENAI_API_KEY=sk-...
+EMBEDDINGS_MODEL=all-mpnet-base-v2
+CHUNK_SIZE=512
+CHUNK_OVERLAP=50
+RETRIEVAL_TOP_K=5
+```
+
+### Frontend
+Frontend automatically connects to backend at http://localhost:8000 (configured in vite.config.ts proxy)
+
+## 🌐 Deployment
+
+### Recommended
+- **Backend**: Render.com (Python)
+- **Frontend**: Vercel (React)
+
+### Docker (Coming Soon)
+```bash
+docker-compose up
+```
+
+## 📝 Documentation
+
+- [QUICKSTART.md](QUICKSTART.md) - Fast 3-step setup guide
+- [LOCAL_TESTING.md](LOCAL_TESTING.md) - Complete testing guide
+- [TEST_BACKEND.md](TEST_BACKEND.md) - Backend API testing with PowerShell
+- [API_TESTING.md](API_TESTING.md) - Full API documentation
+- [DEVELOPMENT.md](DEVELOPMENT.md) - Development guide
+
+## 🤝 Architecture
+
+This is a complete AI document understanding platform built with:
+- **Deep learning** for document processing (PyTorch, Transformers)
+- **RAG** for accurate Q&A (FAISS, Sentence-BERT)
+- **Persona-aware summarization** (Student/Teacher/Expert)
+- **Modern React frontend** with TypeScript and Tailwind CSS
+
+## 📄 License
+
+See LICENSE file
+
 ---
 
-## 🎓 **Academic Contribution (ANN & DL)**
-
-This project demonstrates:
-
-* **Advanced Neural Networks**
-
-  * Neural document perception
-  * Deep feature extraction
-
-* **Deep Learning (Transformers)**
-
-  * Context-aware embeddings
-  * Attention mechanisms
-
-* **NLP & Information Retrieval**
-
-  * Semantic search
-  * RAG-based question answering
-
-* **AI in Education**
-
-  * Personalized learning
-  * Automated knowledge artifacts
-
----
-
-## 🔮 **Future Scope**
-
-* Adaptive AI quizzes
-* Mind maps & visual concept graphs
-* Multi-language support
-* Voice-based document interaction
-* Collaborative learning mode
-
----
-
-## 👨‍💻 **Built By**
-
-**Lakshya Chopra**
-Full Stack + AI/ML Enthusiast
-
----
-
-## 📜 License
-
-MIT License
-
----
-
-⭐ *If you like this project, don’t forget to star the repo!*
+**Built with ❤️ using FastAPI, PyTorch, React, and TypeScript**

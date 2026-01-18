@@ -1,0 +1,106 @@
+# ============================================================================
+# SummarizerAI - ML Pipeline Dependencies
+# Deep Learning & NLP Components
+# Python 3.10+ required
+# ============================================================================
+
+# -------------------- Core Deep Learning Frameworks --------------------
+torch==2.1.2
+torchvision==0.16.2
+transformers==4.36.2
+
+# -------------------- Document Understanding (Layout Analysis & OCR) --------------------
+# LayoutLM and related models
+layoutparser==0.3.4
+effdet==0.4.1
+timm==0.9.12
+
+# OCR engines
+pytesseract==0.3.10
+pdf2image==1.16.3
+Pillow==10.2.0
+
+# PDF processing
+PyPDF2==3.0.1
+pdfplumber==0.10.3
+pymupdf==1.23.8
+
+# PowerPoint processing
+python-pptx==0.6.23
+
+# -------------------- Embeddings & Semantic Search --------------------
+sentence-transformers==2.2.2
+faiss-cpu==1.7.4
+
+# Alternative: Use faiss-gpu for GPU acceleration
+# faiss-gpu==1.7.4
+
+# -------------------- Natural Language Processing --------------------
+nltk==3.8.1
+spacy==3.7.2
+# Download spacy model: python -m spacy download en_core_web_sm
+
+# Text processing utilities
+langdetect==1.0.9
+textstat==0.7.3
+
+# -------------------- Large Language Model Integration --------------------
+# OpenAI API
+openai==1.7.2
+
+# HuggingFace Inference
+huggingface-hub==0.20.2
+
+# LangChain for RAG
+langchain==0.1.0
+langchain-community==0.0.10
+langchain-openai==0.0.2
+
+# -------------------- Document Chunking --------------------
+tiktoken==0.5.2  # Token counting for OpenAI models
+semantic-text-splitter==0.1.0
+
+# -------------------- Vector Store & Retrieval --------------------
+numpy==1.26.3
+scipy==1.11.4
+
+# -------------------- Data Processing --------------------
+pandas==2.1.4
+tqdm==4.66.1
+
+# -------------------- Configuration & Utilities --------------------
+python-dotenv==1.0.0
+pyyaml==6.0.1
+python-dateutil==2.8.2
+
+# -------------------- Logging & Monitoring --------------------
+python-json-logger==2.0.7
+colorlog==6.8.0
+
+# -------------------- Optional: Advanced OCR Models --------------------
+# Donut (End-to-end document understanding)
+# donut-python==1.0.7
+
+# EasyOCR (Multi-language OCR)
+# easyocr==1.7.0
+
+# -------------------- Optional: GPU Acceleration --------------------
+# CUDA support (if available)
+# nvidia-ml-py3==7.352.0
+
+# -------------------- Testing --------------------
+pytest==7.4.4
+pytest-asyncio==0.23.3
+pytest-cov==4.1.0
+
+# -------------------- Code Quality --------------------
+black==24.1.1
+isort==5.13.2
+flake8==7.0.0
+mypy==1.8.0
+
+# -------------------- Jupyter (for experimentation) --------------------
+jupyter==1.0.0
+ipykernel==6.28.0
+matplotlib==3.8.2
+seaborn==0.13.1
