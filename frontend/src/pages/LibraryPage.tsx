@@ -266,3 +266,4 @@ export default function LibraryPage() {
 
 /* Enhancement: filter documents by type (PDF/PPTX) */
 /* Enhancement: show status badge (processing/completed/failed) */
+/* Enhancement: confirm dialog before document deletion */
