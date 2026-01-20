@@ -263,3 +263,5 @@ export default function LibraryPage() {
         </div>
     );
 }
+
+/* Enhancement: filter documents by type (PDF/PPTX) */
