@@ -143,3 +143,4 @@ def test_batch_upload():
 
 
 # Enhancement: add test for oversized file rejection
+# Enhancement: add test for unsupported file type
