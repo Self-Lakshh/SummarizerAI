@@ -85,9 +85,59 @@ def test_delete_document_not_found():
     assert response.status_code == 404
 
 
-# TODO: Add more comprehensive tests:
-# - Test file size limits
-# - Test batch upload
-# - Test upload and then delete
-# - Test concurrent uploads
-# - Mock ML service responses
+def test_list_documents():
+    """Test listing documents"""
+    response = client.get("/api/v1/upload")
+    assert response.status_code == 200
+    assert isinstance(response.json(), list)
+
+
+def test_upload_delete_lifecycle():
+    """Test complete upload, status, list, and delete lifecycle"""
+    pdf_content = b"%PDF-1.4\n1 0 obj\n<<\n/Type /Catalog\n/Pages 2 0 R\n>>\nendobj\n2 0 obj\n<<\n/Type /Pages\n/Kids [3 0 R]\n/Count 1\n>>\nendobj\n3 0 obj\n<<\n/Type /Page\n/Parent 2 0 R\n>>\nendobj\nxref\n0 4\n0000000000 65535 f\ntrailer\n<<\n/Size 4\n/Root 1 0 R\n>>\n%%EOF"
+    
+    # Upload
+    files = {"file": ("test_lifecycle.pdf", io.BytesIO(pdf_content), "application/pdf")}
+    response = client.post("/api/v1/upload", files=files)
+    assert response.status_code == 201
+    doc_id = response.json()["document_id"]
+    
+    # Get Status
+    status_response = client.get(f"/api/v1/upload/status/{doc_id}")
+    assert status_response.status_code == 200
+    assert status_response.json()["document_id"] == doc_id
+    
+    # Check List
+    list_response = client.get("/api/v1/upload")
+    assert list_response.status_code == 200
+    doc_ids = [d["document_id"] for d in list_response.json()]
+    assert doc_id in doc_ids
+    
+    # Delete
+    delete_response = client.delete(f"/api/v1/upload/{doc_id}")
+    assert delete_response.status_code == 204
+    
+    # Verify Deleted
+    status_response_deleted = client.get(f"/api/v1/upload/status/{doc_id}")
+    assert status_response_deleted.status_code == 404
+
+
+def test_batch_upload():
+    """Test batch upload of multiple documents"""
+    pdf_content = b"%PDF-1.4\n%%EOF"
+    files = [
+        ("files", ("batch1.pdf", io.BytesIO(pdf_content), "application/pdf")),
+        ("files", ("batch2.pdf", io.BytesIO(pdf_content), "application/pdf"))
+    ]
+    
+    response = client.post("/api/v1/upload/batch", files=files)
+    assert response.status_code == 201
+    data = response.json()
+    assert len(data) == 2
+    assert data[0]["filename"] == "batch1.pdf"
+    assert data[1]["filename"] == "batch2.pdf"
+    
+    # Clean up batch uploads
+    for item in data:
+        client.delete(f"/api/v1/upload/{item['document_id']}")
+
