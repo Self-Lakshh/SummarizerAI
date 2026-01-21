@@ -141,3 +141,5 @@ def test_batch_upload():
     for item in data:
         client.delete(f"/api/v1/upload/{item['document_id']}")
 
+
+# Enhancement: add test for oversized file rejection
