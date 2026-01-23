@@ -117,3 +117,5 @@ def test_get_chat_history():
 def test_clear_chat_history():
     response = client.delete("/api/v1/chat/history/doc_test123456")
     assert response.status_code == 204
+
+# Enhancement: test multi-turn conversation maintains history
