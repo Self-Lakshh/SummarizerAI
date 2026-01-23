@@ -119,3 +119,4 @@ def test_clear_chat_history():
     assert response.status_code == 204
 
 # Enhancement: test multi-turn conversation maintains history
+# Enhancement: test history retrieval and deletion endpoints
