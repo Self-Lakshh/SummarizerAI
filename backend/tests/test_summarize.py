@@ -110,3 +110,4 @@ def test_compare_personas_success(mock_ml, mock_doc, mock_document_info):
     assert data["student"]["summary"] == data["student"]["summary"]
 
 # Enhancement: test all three personas return distinct summaries
+# Enhancement: test compare endpoint returns all personas
