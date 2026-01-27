@@ -166,3 +166,5 @@ def test_export_flashcards_anki(mock_ml, mock_doc, mock_document_info):
     assert response.status_code == 200
     assert response.headers["content-type"] == "text/plain; charset=utf-8"
     assert "attachment; filename=flashcards_doc_test123456.txt" in response.headers["content-disposition"]
+
+# Enhancement: test custom flashcard creation
