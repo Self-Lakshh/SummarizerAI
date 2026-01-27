@@ -168,3 +168,4 @@ def test_export_flashcards_anki(mock_ml, mock_doc, mock_document_info):
     assert "attachment; filename=flashcards_doc_test123456.txt" in response.headers["content-disposition"]
 
 # Enhancement: test custom flashcard creation
+# Enhancement: test export returns valid CSV and JSON
