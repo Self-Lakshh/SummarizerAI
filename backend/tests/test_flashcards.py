@@ -169,3 +169,4 @@ def test_export_flashcards_anki(mock_ml, mock_doc, mock_document_info):
 
 # Enhancement: test custom flashcard creation
 # Enhancement: test export returns valid CSV and JSON
+# Enhancement: test topic preview before generation
