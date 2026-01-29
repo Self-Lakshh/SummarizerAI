@@ -145,3 +145,4 @@ def test_batch_upload():
 # Enhancement: add test for oversized file rejection
 # Enhancement: add test for unsupported file type
 # Enhancement: add test for document listing endpoint
+# Enhancement: add DELETE document test with 204 response
