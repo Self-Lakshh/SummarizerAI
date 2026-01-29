@@ -111,3 +111,4 @@ def test_compare_personas_success(mock_ml, mock_doc, mock_document_info):
 
 # Enhancement: test all three personas return distinct summaries
 # Enhancement: test compare endpoint returns all personas
+# Enhancement: test 404 on summarize with unknown document
