@@ -28,3 +28,5 @@ def sample_chunks():
         "This is the second chunk discussing important concepts.",
         "The third chunk provides additional context."
     ]
+
+# Enhancement: add temp uploads dir fixture with cleanup
