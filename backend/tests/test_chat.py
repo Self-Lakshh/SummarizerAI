@@ -122,3 +122,4 @@ def test_clear_chat_history():
 # Enhancement: test history retrieval and deletion endpoints
 # Enhancement: test 404 on chat with unknown document
 # Enhancement: test empty message returns 422 validation error
+# Enhancement: test source chunks are returned with chat answer
