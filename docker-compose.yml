@@ -28,3 +28,4 @@ services:
     restart: unless-stopped
 
 # Enhancement: add restart: unless-stopped for production resilience
+# Enhancement: mount uploads volume for persistence across restarts
