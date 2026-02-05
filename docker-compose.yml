@@ -26,3 +26,5 @@ services:
     depends_on:
       - backend
     restart: unless-stopped
+
+# Enhancement: add restart: unless-stopped for production resilience
