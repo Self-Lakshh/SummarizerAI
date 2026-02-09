@@ -30,3 +30,4 @@ services:
 # Enhancement: add restart: unless-stopped for production resilience
 # Enhancement: mount uploads volume for persistence across restarts
 # Enhancement: add environment variable passthrough for OPENAI_API_KEY
+# Enhancement: add depends_on for startup ordering
