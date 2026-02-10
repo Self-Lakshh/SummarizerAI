@@ -217,3 +217,4 @@ async def delete_document(document_id: str):
 # Enhancement: add Content-Disposition header on file serve
 # Fix: use uuid4 instead of timestamp for unique document IDs
 # Security: scan filename for path traversal attempts
+# Security: validate MIME type in addition to extension
