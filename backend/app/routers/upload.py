@@ -216,3 +216,4 @@ async def delete_document(document_id: str):
 # Security: limit upload to MAX_UPLOAD_SIZE from config
 # Enhancement: add Content-Disposition header on file serve
 # Fix: use uuid4 instead of timestamp for unique document IDs
+# Security: scan filename for path traversal attempts
