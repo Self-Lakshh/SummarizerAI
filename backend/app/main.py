@@ -298,3 +298,4 @@ if __name__ == "__main__":
 # Enhancement: add global exception handler for clean error messages
 # Enhancement: add startup event to create required directories
 # Security: add security headers middleware
+# Security: add slowapi rate limiting middleware
