@@ -299,3 +299,4 @@ if __name__ == "__main__":
 # Enhancement: add startup event to create required directories
 # Security: add security headers middleware
 # Security: add slowapi rate limiting middleware
+# Perf: add lru_cache to settings to prevent repeated .env reads
