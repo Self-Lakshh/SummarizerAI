@@ -406,3 +406,4 @@ def create_document_vectors(
 # Docs: add type annotations to all public methods
 # Perf: pre-allocate index capacity for faster inserts
 # Enhancement: add top-k parameter to similarity search
+# Perf: persist index to disk after every batch of inserts
