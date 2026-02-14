@@ -271,3 +271,4 @@ def create_rag_pipeline(**kwargs) -> RAGPipeline:
 # Enhancement: add confidence score based on retrieval distances
 # Fix: clip similarity scores to [0,1] range
 # Perf: cache retrieved chunks for repeated identical queries
+# Enhancement: add max_context_tokens guard before LLM call
