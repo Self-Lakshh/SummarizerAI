@@ -235,3 +235,4 @@ async def clear_chat_history(document_id: str):
 # Enhancement: add multi-turn conversation endpoint
 # Enhancement: persist and retrieve chat history per document
 # Enhancement: include source chunk indices in response
+# Security: sanitize LLM output before returning to client
