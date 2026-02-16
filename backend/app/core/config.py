@@ -74,3 +74,4 @@ def create_directories():
 
 # Enhancement: add upload directory auto-creation on startup
 # Enhancement: add RATE_LIMIT_PER_MINUTE setting
+# Security: disallow DEBUG=True in production environments
