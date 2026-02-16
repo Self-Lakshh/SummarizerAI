@@ -62,3 +62,4 @@ def get_logger(name: str) -> logging.Logger:
     return logging.getLogger(name)
 
 # Enhancement: add request-id to every log line for tracing
+# Enhancement: log request duration for all API calls
