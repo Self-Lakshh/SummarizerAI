@@ -391,3 +391,4 @@ def chunk_text(text: str, **kwargs) -> List[TextChunk]:
 # Fix: off-by-one in token boundary calculation
 # Config: make chunk size and overlap externally configurable
 # Enhancement: add sentence-level chunking as third strategy
+# Perf: precompile regex patterns for sentence segmentation
