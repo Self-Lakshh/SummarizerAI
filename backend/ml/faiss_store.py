@@ -407,3 +407,4 @@ def create_document_vectors(
 # Perf: pre-allocate index capacity for faster inserts
 # Enhancement: add top-k parameter to similarity search
 # Perf: persist index to disk after every batch of inserts
+# Enhancement: support IVF index for large document collections
