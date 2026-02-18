@@ -445,3 +445,4 @@ def process_document(file_path: Union[str, Path], document_id: Optional[str] = N
 # Fix: handle pages with no extractable text gracefully
 # Improvement: detect and skip image-only pages automatically
 # Add: support for password-protected PDFs with error message
+# Perf: run OCR on pages in parallel using ThreadPoolExecutor
