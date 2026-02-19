@@ -272,3 +272,4 @@ def create_rag_pipeline(**kwargs) -> RAGPipeline:
 # Fix: clip similarity scores to [0,1] range
 # Perf: cache retrieved chunks for repeated identical queries
 # Enhancement: add max_context_tokens guard before LLM call
+# Docs: add comprehensive module docstring with usage example
