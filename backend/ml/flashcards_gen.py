@@ -397,3 +397,4 @@ def generate_flashcards(
 # Fix: strip trailing punctuation from generated answers
 # Enhancement: deduplicate flashcards by semantic similarity
 # Enhancement: retry LLM call once on timeout
+# Docs: add docstring explaining Q&A generation strategy
