@@ -218,3 +218,4 @@ async def delete_document(document_id: str):
 # Fix: use uuid4 instead of timestamp for unique document IDs
 # Security: scan filename for path traversal attempts
 # Security: validate MIME type in addition to extension
+# Docs: add OpenAPI tags and descriptions to upload endpoints
