@@ -349,3 +349,4 @@ async def export_flashcards(
 # Enhancement: add /flashcards/custom for user-defined cards
 # Enhancement: add /flashcards/export with JSON and CSV format
 # Enhancement: add /flashcards/preview for topic inspection
+# Docs: add OpenAPI tags and descriptions to flashcard endpoints
