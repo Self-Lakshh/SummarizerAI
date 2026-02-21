@@ -210,3 +210,4 @@ async def compare_personas(document_id: str, max_length: int = 500):
 # Enhancement: record generation_time in response
 # Fix: handle missing document with 404 instead of 500
 # Security: sanitize summary text output
+# Docs: add OpenAPI tags and descriptions to summarize endpoints
