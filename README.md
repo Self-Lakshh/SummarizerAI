@@ -232,3 +232,4 @@ See LICENSE file
 
 <!-- Enhancement: add phase-based roadmap section -->
 <!-- Enhancement: add API reference tables -->
+<!-- Enhancement: add configuration section -->
