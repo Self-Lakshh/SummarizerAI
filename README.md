@@ -229,3 +229,5 @@ See LICENSE file
 ---
 
 **Built with ❤️ using FastAPI, PyTorch, React, and TypeScript**
+
+<!-- Enhancement: add phase-based roadmap section -->
