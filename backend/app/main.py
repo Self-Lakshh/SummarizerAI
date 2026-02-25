@@ -301,3 +301,4 @@ if __name__ == "__main__":
 # Security: add slowapi rate limiting middleware
 # Perf: add lru_cache to settings to prevent repeated .env reads
 # Enhancement: add /metrics endpoint for monitoring integration
+# Enhancement: add /version endpoint for deployment tracking
