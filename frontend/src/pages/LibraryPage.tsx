@@ -268,3 +268,4 @@ export default function LibraryPage() {
 /* Enhancement: show status badge (processing/completed/failed) */
 /* Enhancement: confirm dialog before document deletion */
 /* Enhancement: click document row to navigate to summarize page */
+/* Enhancement: add sort by date / name toggle */
