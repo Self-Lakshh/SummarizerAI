@@ -524,3 +524,4 @@ export default function FlashcardsPage() {
 /* Enhancement: add Study Mode with Next/Previous navigation */
 /* Enhancement: mark card as 'Learned' and track progress */
 /* Enhancement: CSV and JSON export buttons */
+/* Enhancement: keyboard left/right arrow navigation in study mode */
