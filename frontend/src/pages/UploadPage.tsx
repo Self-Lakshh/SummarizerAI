@@ -183,3 +183,4 @@ export default function UploadPage() {
 /* Enhancement: show file size and type badge on file drop */
 /* Enhancement: batch upload progress with individual file status */
 /* Enhancement: show error state with retry button on failure */
+/* Enhancement: show estimated processing time based on file size */
