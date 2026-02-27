@@ -251,3 +251,4 @@ export default function ChatPage() {
 /* Enhancement: add 'Copy' action on assistant messages */
 /* Enhancement: auto-scroll to latest message on new response */
 /* Enhancement: show typing indicator while RAG is processing */
+/* Enhancement: add keyboard shortcut Ctrl+Enter to submit */
