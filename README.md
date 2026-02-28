@@ -1,236 +1,274 @@
-# SummarizerAI - Complete Monorepo
+<div align="center">
 
-AI-powered document understanding with deep learning. Complete full-stack application in one repository.
+# 🧠 SummarizerAI
+
+### AI-Powered Document Intelligence Platform
+
+Upload any PDF or PowerPoint — get instant summaries, chat with your document, and generate flashcards using state-of-the-art deep learning.
+
+<br/>
+
+![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.109-009688?style=for-the-badge&logo=fastapi&logoColor=white)
+![PyTorch](https://img.shields.io/badge/PyTorch-2.1-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
+![React](https://img.shields.io/badge/React-18.2-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-3.4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![OpenAI](https://img.shields.io/badge/OpenAI-GPT--3.5-412991?style=for-the-badge&logo=openai&logoColor=white)
+
+</div>
+
+---
+
+## ✨ Features
+
+| Feature | Description |
+|---|---|
+| 📄 **Document Upload** | Drag-and-drop PDF & PPT/PPTX with batch support and real-time progress |
+| 🧾 **Persona Summaries** | Student · Teacher · Expert adaptive summaries with side-by-side comparison |
+| 💬 **RAG Chat** | Ask questions and get cited answers grounded in your document |
+| 🃏 **Flashcards** | AI-generated Q&A study cards with difficulty levels and CSV/JSON export |
+| 📚 **Document Library** | Browse, search, filter, and manage all your uploaded documents |
+| 🔍 **Source Citations** | Every chat response shows the exact passage it came from |
+
+---
 
 ## 📁 Project Structure
 
 ```
-/
-├── backend/              # Backend API + ML Pipeline
-│   ├── app/             # FastAPI application
-│   │   ├── core/        # Configuration & logging
-│   │   ├── models/      # Pydantic schemas
-│   │   ├── routers/     # API endpoints (upload, summarize, chat, flashcards)
-│   │   └── services/    # Business logic
-│   ├── ml/              # ML Pipeline (7 modules)
-│   │   ├── layout_ocr.py       # Document processing with OCR
+SummarizerAI/
+├── backend/                    # FastAPI + ML Pipeline
+│   ├── app/
+│   │   ├── core/               # Config & structured logging
+│   │   ├── models/             # Pydantic v2 schemas
+│   │   ├── routers/            # API endpoints (upload, summarize, chat, flashcards)
+│   │   └── services/           # Business logic & ML integration
+│   ├── ml/                     # 7-module deep learning pipeline
+│   │   ├── layout_ocr.py       # PDF/PPT extraction + Tesseract OCR
 │   │   ├── chunking.py         # Semantic text segmentation
-│   │   ├── embeddings.py       # Sentence-BERT embeddings
-│   │   ├── faiss_store.py      # FAISS vector search
-│   │   ├── rag_pipeline.py     # RAG Q&A system
-│   │   ├── persona_summary.py  # Persona-aware summarization
+│   │   ├── embeddings.py       # Sentence-BERT (all-mpnet-base-v2)
+│   │   ├── faiss_store.py      # FAISS vector index management
+│   │   ├── rag_pipeline.py     # Retrieval-Augmented Generation
+│   │   ├── persona_summary.py  # Student / Teacher / Expert summaries
 │   │   └── flashcards_gen.py   # AI flashcard generation
-│   ├── tests/           # Backend tests
-│   └── requirements.txt # Python dependencies
+│   ├── tests/                  # 27 unit + integration tests
+│   └── requirements.txt
 │
-├── frontend/            # React Frontend
+├── frontend/                   # React + Vite + TypeScript
 │   ├── src/
-│   │   ├── components/  # UI components (Layout + shadcn/ui)
-│   │   ├── pages/       # 5 pages (Home, Upload, Summarize, Chat, Flashcards)
-│   │   ├── services/    # API client (16 endpoints)
-│   │   └── store/       # Zustand state management
-│   └── package.json     # Node dependencies
+│   │   ├── components/         # Layout, shadcn/ui components
+│   │   ├── pages/              # Home · Upload · Library · Summarize · Chat · Flashcards
+│   │   ├── services/           # Typed API client (16 endpoints)
+│   │   └── store/              # Zustand global state
+│   └── package.json
 │
-├── run_backend.ps1      # One-click backend launcher
-├── run_frontend.ps1     # One-click frontend launcher
-└── run_all.ps1          # Launch both servers
+├── docker-compose.yml          # Single-command full-stack launch
+└── README.md
 ```
-
-## 🚀 Quick Start (30 Seconds)
-
-### One Command Launch
-```powershell
-.\run_all.ps1
-```
-✅ **Backend**: http://localhost:8000 (API Docs: /docs)  
-✅ **Frontend**: http://localhost:3000
-
-### Manual Launch
-
-**Terminal 1 - Backend:**
-```powershell
-.\run_backend.ps1
-```
-
-**Terminal 2 - Frontend:**
-```powershell
-.\run_frontend.ps1
-```
-
-## 🛠️ Setup (First Time Only)
-
-### Backend Setup
-```powershell
-cd backend
-python -m venv venv
-.\venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-
-# Create .env file
-Copy-Item .env.example .env
-# Add your OPENAI_API_KEY to .env
-
-# Download NLTK data
-python -c "import nltk; nltk.download('punkt')"
-```
-
-### Frontend Setup
-```powershell
-cd frontend
-npm install --legacy-peer-deps
-
-# Frontend uses backend at http://localhost:8000 (configured in vite.config.ts)
-```
-
-## 🎯 Features
-
-### Backend (FastAPI + Python)
-- **Upload API** - PDF and PowerPoint processing with batch support
-- **Summarization** - Persona-aware (Student/Teacher/Expert) summaries
-- **Chat API** - RAG-powered document Q&A with conversation history
-- **Flashcards** - AI-generated study cards with difficulty levels
-
-### ML Pipeline (PyTorch + Transformers)
-- **OCR** - Layout-aware document processing (Tesseract + pdfplumber)
-- **Embeddings** - Sentence-BERT semantic vectors (all-mpnet-base-v2)
-- **FAISS** - Fast similarity search for document retrieval
-- **RAG** - Retrieval-Augmented Generation for accurate Q&A
-- **Summarization** - LLM-based adaptive summaries with personas
-
-### Frontend (React + TypeScript)
-- **Upload Page** - Drag & drop interface with react-dropzone
-- **Summarize** - Multi-persona summaries with comparison
-- **Chat** - Interactive document Q&A with history
-- **Flashcards** - Generate, view, and export study cards
-- **State Management** - Zustand for global state
-- **UI Components** - shadcn/ui + Tailwind CSS
-
-## 📚 Tech Stack
-
-### Backend
-- FastAPI 0.109.0
-- Python 3.10+
-- Pydantic 2.5.3
-- Uvicorn
-
-### ML/DL
-- PyTorch 2.1.2
-- Transformers 4.36.2
-- Sentence-Transformers 2.2.2
-- FAISS 1.7.4
-- OpenAI API
-- pdfplumber, pytesseract
-
-### Frontend
-- React 18.2
-- TypeScript 5.9
-- Vite 7.2
-- Tailwind CSS 3.4
-- shadcn/ui
-- React Router 6
-- Zustand 4.4
-- Axios 1.6
-
-## 🧪 Testing
-
-### Backend Tests
-```powershell
-cd backend
-pytest tests/
-```
-
-### API Testing
-```powershell
-# Start backend first
-cd backend
-.\venv\Scripts\Activate.ps1
-uvicorn app.main:app --reload
-
-# Visit http://localhost:8000/docs for interactive API testing
-```
-
-### Full Integration Test
-1. Start both servers: `.\run_all.ps1`
-2. Open: http://localhost:3000
-3. Upload a PDF
-4. Test summarization, chat, and flashcards
-
-## 📖 API Endpoints
-
-### Upload (4 endpoints)
-- `POST /upload/` - Upload document
-- `POST /upload/batch` - Upload multiple documents
-- `GET /upload/status/{id}` - Get upload status
-- `DELETE /upload/{id}` - Delete document
-
-### Summarize (3 endpoints)
-- `POST /summarize/` - Generate summary for specific persona
-- `GET /summarize/personas` - Get available persona information
-- `POST /summarize/compare` - Compare all personas simultaneously
-
-### Chat (5 endpoints)
-- `POST /chat/` - Chat with document
-- `POST /chat/multi-turn` - Multi-turn conversation
-- `GET /chat/history/{id}` - Get chat history
-- `DELETE /chat/history/{id}` - Clear history
-- `GET /chat/context/{id}` - Get conversation context
-
-### Flashcards (4 endpoints)
-- `POST /flashcards/` - Generate flashcards
-- `GET /flashcards/preview/{id}` - Preview topics
-- `POST /flashcards/custom` - Create custom card
-- `GET /flashcards/export/{id}` - Export flashcards (JSON/CSV)
-
-## 🔧 Configuration
-
-### Backend (.env)
-```env
-OPENAI_API_KEY=sk-...
-EMBEDDINGS_MODEL=all-mpnet-base-v2
-CHUNK_SIZE=512
-CHUNK_OVERLAP=50
-RETRIEVAL_TOP_K=5
-```
-
-### Frontend
-Frontend automatically connects to backend at http://localhost:8000 (configured in vite.config.ts proxy)
-
-## 🌐 Deployment
-
-### Recommended
-- **Backend**: Render.com (Python)
-- **Frontend**: Vercel (React)
-
-### Docker (Coming Soon)
-```bash
-docker-compose up
-```
-
-## 📝 Documentation
-
-- [QUICKSTART.md](QUICKSTART.md) - Fast 3-step setup guide
-- [LOCAL_TESTING.md](LOCAL_TESTING.md) - Complete testing guide
-- [TEST_BACKEND.md](TEST_BACKEND.md) - Backend API testing with PowerShell
-- [API_TESTING.md](API_TESTING.md) - Full API documentation
-- [DEVELOPMENT.md](DEVELOPMENT.md) - Development guide
-
-## 🤝 Architecture
-
-This is a complete AI document understanding platform built with:
-- **Deep learning** for document processing (PyTorch, Transformers)
-- **RAG** for accurate Q&A (FAISS, Sentence-BERT)
-- **Persona-aware summarization** (Student/Teacher/Expert)
-- **Modern React frontend** with TypeScript and Tailwind CSS
-
-## 📄 License
-
-See LICENSE file
 
 ---
 
-**Built with ❤️ using FastAPI, PyTorch, React, and TypeScript**
+## 🚀 Quick Start
 
-<!-- Enhancement: add phase-based roadmap section -->
-<!-- Enhancement: add API reference tables -->
-<!-- Enhancement: add configuration section -->
-<!-- Final: mark Phase 2 roadmap items as completed -->
+### Option 1 — Docker (Recommended)
+
+> Requires [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+
+```bash
+# 1. Clone the repo
+git clone https://github.com/Self-Lakshh/SummarizerAI.git
+cd SummarizerAI
+
+# 2. Set your OpenAI key
+echo "OPENAI_API_KEY=sk-..." > backend/.env
+
+# 3. Launch everything
+docker compose up --build
+```
+
+| Service | URL |
+|---|---|
+| 🖥️ Frontend | http://localhost:3000 |
+| ⚡ Backend API | http://localhost:8000 |
+| 📖 API Docs (Swagger) | http://localhost:8000/docs |
+
+---
+
+### Option 2 — Manual (Development)
+
+**Backend**
+```bash
+cd backend
+python -m venv venv
+
+# Windows
+venv\Scripts\activate
+# macOS / Linux
+source venv/bin/activate
+
+pip install -r requirements.txt
+
+# Copy and fill in your environment variables
+cp .env.example .env   # then add OPENAI_API_KEY
+
+python -m nltk.downloader punkt
+uvicorn app.main:app --reload --port 8000
+```
+
+**Frontend** *(separate terminal)*
+```bash
+cd frontend
+npm install --legacy-peer-deps
+npm run dev
+```
+
+---
+
+## 🛠️ Tech Stack
+
+### Backend
+![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white)
+![Pydantic](https://img.shields.io/badge/Pydantic_v2-E92063?logo=pydantic&logoColor=white)
+![Uvicorn](https://img.shields.io/badge/Uvicorn-grey?logo=gunicorn&logoColor=white)
+
+### Machine Learning
+![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?logo=pytorch&logoColor=white)
+![HuggingFace](https://img.shields.io/badge/🤗_Transformers-FFD21E?logoColor=black)
+![OpenAI](https://img.shields.io/badge/OpenAI_API-412991?logo=openai&logoColor=white)
+![FAISS](https://img.shields.io/badge/FAISS-0467DF?logo=meta&logoColor=white)
+
+### Frontend
+![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?logo=tailwindcss&logoColor=white)
+![Zustand](https://img.shields.io/badge/Zustand-433E38?logo=react&logoColor=white)
+![shadcn/ui](https://img.shields.io/badge/shadcn%2Fui-000000?logo=shadcnui&logoColor=white)
+
+### DevOps
+![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)
+![Nginx](https://img.shields.io/badge/Nginx-009639?logo=nginx&logoColor=white)
+
+---
+
+## 📡 API Reference
+
+### Upload
+| Method | Endpoint | Description |
+|---|---|---|
+| `POST` | `/api/v1/upload/` | Upload a single document |
+| `POST` | `/api/v1/upload/batch` | Upload multiple documents |
+| `GET` | `/api/v1/upload/status/{id}` | Get processing status |
+| `GET` | `/api/v1/upload/list` | List all uploaded documents |
+| `DELETE` | `/api/v1/upload/{id}` | Delete a document |
+
+### Summarize
+| Method | Endpoint | Description |
+|---|---|---|
+| `POST` | `/api/v1/summarize/` | Generate persona summary |
+| `GET` | `/api/v1/summarize/personas` | List available personas |
+| `POST` | `/api/v1/summarize/compare` | Compare all personas at once |
+
+### Chat
+| Method | Endpoint | Description |
+|---|---|---|
+| `POST` | `/api/v1/chat/` | Ask a question (RAG) |
+| `POST` | `/api/v1/chat/multi-turn` | Multi-turn conversation |
+| `GET` | `/api/v1/chat/history/{id}` | Retrieve chat history |
+| `DELETE` | `/api/v1/chat/history/{id}` | Clear chat history |
+
+### Flashcards
+| Method | Endpoint | Description |
+|---|---|---|
+| `POST` | `/api/v1/flashcards/` | Generate AI flashcards |
+| `GET` | `/api/v1/flashcards/preview/{id}` | Preview topics |
+| `POST` | `/api/v1/flashcards/custom` | Add a custom card |
+| `GET` | `/api/v1/flashcards/export/{id}` | Export JSON or CSV |
+
+> Full interactive docs available at **http://localhost:8000/docs** when running.
+
+---
+
+## ⚙️ Configuration
+
+### Backend — `backend/.env`
+```env
+# Required
+OPENAI_API_KEY=sk-...
+
+# Optional overrides
+LLM_MODEL=gpt-3.5-turbo
+EMBEDDINGS_MODEL=sentence-transformers/all-mpnet-base-v2
+UPLOAD_DIR=uploads
+FAISS_INDEX_DIR=faiss_indices
+LOG_LEVEL=INFO
+```
+
+### Frontend
+The Vite dev server proxies `/api/v1/` → `http://localhost:8000` automatically via `vite.config.ts`.
+In Docker, Nginx handles the same proxy routing.
+
+---
+
+## 🧪 Testing
+
+```bash
+cd backend
+
+# Run full test suite
+pytest tests/ -v
+
+# With coverage report
+pytest tests/ --cov=app --cov-report=term-missing
+```
+
+**Current status: 27 tests · 0 failures**
+
+---
+
+## 🗺️ Roadmap
+
+### Phase 1 — Foundation ✅
+- [x] FastAPI backend with 4 router groups (upload, summarize, chat, flashcards)
+- [x] 7-module ML pipeline (OCR → chunking → embeddings → FAISS → RAG → summaries → flashcards)
+- [x] React frontend with all core pages
+- [x] Pydantic v2 schemas for all request/response payloads
+- [x] Document JSON persistence layer
+
+### Phase 2 — Quality & Production ✅
+- [x] 27 unit + integration backend tests
+- [x] Document Library page (search, filter, delete)
+- [x] Source citations in Chat (passage-level context viewer)
+- [x] Interactive Study Mode for Flashcards (flip, track progress, mark learned)
+- [x] Docker Compose full-stack containerisation (Nginx, FastAPI, React)
+- [x] Pydantic v2 migration (`model_config = SettingsConfigDict`)
+- [x] Frontend production build — 1543 modules, 0 TypeScript errors
+
+### Phase 3 — Scale & Polish 🔜
+- [ ] Async background task processing (Celery / FastAPI BackgroundTasks)
+- [ ] Rate limiting middleware (slowapi)
+- [ ] PostgreSQL document metadata store
+- [ ] Streaming chat responses (Server-Sent Events)
+- [ ] Study dashboard with mastery analytics
+- [ ] CI/CD pipeline (GitHub Actions)
+- [ ] Cloud deployment guides (Render + Vercel / AWS ECS)
+
+---
+
+## 📄 License
+
+[MIT](LICENSE) — © 2025 SummarizerAI
+
+---
+
+<div align="center">
+
+Built with ❤️ using&nbsp;
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white)&nbsp;
+![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?logo=pytorch&logoColor=white)&nbsp;
+![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=black)&nbsp;
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
+
+</div>
