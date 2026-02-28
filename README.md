@@ -233,3 +233,4 @@ See LICENSE file
 <!-- Enhancement: add phase-based roadmap section -->
 <!-- Enhancement: add API reference tables -->
 <!-- Enhancement: add configuration section -->
+<!-- Final: mark Phase 2 roadmap items as completed -->
