@@ -302,3 +302,4 @@ if __name__ == "__main__":
 # Perf: add lru_cache to settings to prevent repeated .env reads
 # Enhancement: add /metrics endpoint for monitoring integration
 # Enhancement: add /version endpoint for deployment tracking
+# v1.0.0 — initial production release
