@@ -76,3 +76,4 @@ def create_directories():
 # Enhancement: add RATE_LIMIT_PER_MINUTE setting
 # Security: disallow DEBUG=True in production environments
 # Enhancement: add SENTRY_DSN for error tracking integration
+# Final: bump APP_VERSION to 1.0.0
